@@ -1,6 +1,6 @@
 # JBdupe 🏎️💨
 
-**JBdupe** is a specialized Chrome utility designed for Roblox Jailbreak enthusiasts. It streamlines the process of managing limited vehicle data to assist with duplication methods for rare cars like the Torpedo, Javelin, and Beam Hybrid.
+**JBdupe** is a specialized Chrome utility designed for Roblox Jailbreak enthusiasts. It streamlines the process of managing limited vehicle/cosmetic data to assist with duplication methods for rare items such as the Torpedo, Javelin, Hyperdiamond LVL5, and Beam Hybrid.
 
 > **⚠️ Notice:** Use this tool responsibly within Jailbreak trading. Always ensure you are using the latest version to maintain compatibility with the current trading hub state.
 
